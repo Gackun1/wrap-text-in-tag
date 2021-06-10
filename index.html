@@ -4,24 +4,63 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
     <title>wrap text in tag</title>
   </head>
   <body>
-    <h1>wrap text in tag</h1>
-    <div class="input-box">
-      <h2>before</h2>
-      <textarea id="input-form" cols="30" rows="10">
-タイトル
-本文
-ああああ
-      </textarea>
+    <div class="inner">
+      <h1>wrap text in tag</h1>
+      <div class="option-box">
+        <h2>setting</h2>
+        <ul class="list">
+          <li class="list__item">
+            <label for="keep-empty-line" class="list__item__checkbox">
+              <input type="checkbox" name="" id="keep-empty-line" />
+              <p>Keep empty lines</p>
+            </label>
+          </li>
+          <li class="list__item">
+            <label for="replace-tag-empty-line" class="list__item__textarea">
+              <input
+                type="text"
+                id="replace-tag-empty-line"
+                value="&lt;br&gt;"
+                placeholder="&lt;br&gt;"
+              />
+              <p>Tags after replacing empty lines</p>
+            </label>
+          </li>
+          <li class="list__item">
+            <label for="wrap-tag-line" class="list__item__textarea">
+              <input
+                type="text"
+                id="wrap-tag-line"
+                value="&lt;p&gt;"
+                placeholder="&lt;&gt;"
+              />
+              <p>Tags after wrapping lines</p>
+            </label>
+          </li>
+        </ul>
+        <button id="option-btn" class="btn">save</button>
+      </div>
+      <div class="work-box">
+        <div class="work-box__item">
+          <h2>before</h2>
+          <textarea id="input-form" class="textarea"></textarea
+          ><button id="conversion-btn" class="btn">conversion</button>
+        </div>
+        <div class="work-box__item">
+          <h2>after</h2>
+          <textarea id="output-form" class="textarea"></textarea>
+          <div>
+            <button id="copy-btn" class="btn">copy</button>
+            <p id="copy-msg" class="message">copied!</p>
+          </div>
+        </div>
+      </div>
+      <script src="script.js"></script>
     </div>
-    <button id="conversion-btn">conversion</button>
-    <div class="output-box">
-      <h2>after</h2>
-      <textarea id="output-form" cols="30" rows="10"></textarea>
-    </div>
-    <script src="script.js"></script>
+    <footer><small>&copy; 2021 yoshikawa gaku</small></footer>
   </body>
 </html>
