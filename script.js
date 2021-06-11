@@ -10,6 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     replaceTagEmptyLine: "<br>",
     wrapTagLine: "<p>",
   };
+  const regExp = {
+    nonSpaceChar: /\S/g,
+    tag: /<\/?[^>]*>/,
+  };
 
   //change settings
   const setOption = () => {
@@ -45,10 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const startTag = option.wrapTagLine;
     const endTag = createEndTag(option.wrapTagLine);
     const lines = inputText.split(/\r\n|\n/);
-    const regExp = {
-      nonSpaceChar: /\S/g,
-      tag: /<\/?[^>]*>/,
-    };
 
     lines.forEach((v) => {
       if (v.match(regExp.tag) && !option.isWrapExistTag) {
