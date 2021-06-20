@@ -7,8 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const option = {
     isWrapExistTag: false,
     isKeepEmptyLine: false,
+    useOptionWord: false,
     replaceTagEmptyLine: "<br>",
-    wrapTagLine: "<p>",
+    wrapTag: "<p>",
+    optionWord: "",
+    optionTag: "",
   };
   const regExp = {
     nonSpaceChar: /\S/g,
@@ -17,14 +20,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //change settings
   const setOption = () => {
-    const dontWrapLine = document.getElementById("wrap-exist-tag");
-    const keepEmptyLine = document.getElementById("keep-empty-line");
-    const replaceTag = document.getElementById("replace-tag-empty-line");
-    const wrapTag = document.getElementById("wrap-tag-line");
-    option.isWrapExistTag = dontWrapLine.checked;
+    const wrapExistLine = document.getElementById("exist-tag");
+    option.isWrapExistTag = wrapExistLine.checked;
+
+    const keepEmptyLine = document.getElementById("empty-line");
     option.isKeepEmptyLine = keepEmptyLine.checked;
+
+    const replaceTag = document.getElementById("replace-empty-line");
     option.replaceTagEmptyLine = replaceTag.value;
-    option.wrapTagLine = wrapTag.value;
+
+    const wrapTag = document.getElementById("wrap-tag");
+    option.wrapTag = wrapTag.value;
+
+    const useOptionWord = document.getElementById("use-option-word");
+    option.useOptionWord = useOptionWord.checked;
+
+    const optionWord = document.getElementById("option-word");
+    option.optionWord = optionWord.value;
+
+    const optionTag = document.getElementById("option-tag");
+    option.optionTag = optionTag.value;
   };
 
   //create end tag
@@ -42,24 +57,34 @@ document.addEventListener("DOMContentLoaded", () => {
     return endTag.join("");
   };
 
+  const checkOptionWord = (str) => {
+    const firstWord = str.slice(0, option.optionWord.length);
+    return firstWord === option.optionWord ? true : false;
+  };
+
   //conversion button click
   conversionBtn.addEventListener("click", () => {
     let outputText = "";
     const inputText = inputForm.value;
-    const startTag = option.wrapTagLine;
-    const endTag = createEndTag(option.wrapTagLine);
+    const startTag = option.wrapTag;
+    const endTag = createEndTag(option.wrapTag);
     const lines = inputText.split(/\r\n|\n/);
 
     lines.forEach((v) => {
       if (v.match(regExp.tag) && !option.isWrapExistTag) {
-        //contains tags and does not wrap tags
+        //タグが存在している行
         outputText += `${v}\n`;
+      } else if (option.useOptionWord && checkOptionWord(v)) {
+        //特定の文字列がある行
+        outputText += `${option.optionTag}${v.slice(
+          -v.length + option.optionWord.length
+        )}${createEndTag(option.optionTag)}\n`;
       } else {
         if (v.match(regExp.nonSpaceChar)) {
-          //contains non space characters
+          //空白以外の文字が存在する行
           outputText += `${startTag}${v}${endTag}\n`;
         } else if (option.isKeepEmptyLine) {
-          //keep empty line
+          //空の行
           outputText += `${option.replaceTagEmptyLine}\n`;
         }
       }

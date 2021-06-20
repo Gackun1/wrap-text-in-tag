@@ -5,62 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <title>wrap text in tag</title>
+    <title>記事自動マークアップツール</title>
   </head>
   <body>
     <div class="inner">
-      <h1>wrap text in tag</h1>
+      <h1>記事自動マークアップツール</h1>
       <div class="option-box">
-        <h2>setting</h2>
+        <h2>設定</h2>
         <ul class="list">
           <li class="list__item">
-            <label for="wrap-exist-tag" class="list__item__checkbox">
-              <input type="checkbox" name="" id="wrap-exist-tag"/>
-              <p>Wrap existing tags</p>
+            <label for="exist-tag" class="list__item__checkbox">
+              <input type="checkbox" name="" id="exist-tag" />
+              <p>すでにマークアップされている行をラップする</p>
             </label>
           </li>
           <li class="list__item">
-            <label for="keep-empty-line" class="list__item__checkbox">
-              <input type="checkbox" name="" id="keep-empty-line" />
-              <p>Keep empty lines</p>
+            <label for="empty-line" class="list__item__checkbox">
+              <input type="checkbox" name="" id="empty-line" />
+              <p>空の行を保持する</p>
             </label>
           </li>
           <li class="list__item">
-            <label for="replace-tag-empty-line" class="list__item__textarea">
+            <label for="replace-empty-line" class="list__item__textarea">
               <input
                 type="text"
-                id="replace-tag-empty-line"
+                id="replace-empty-line"
                 value="&lt;br&gt;"
                 placeholder="&lt;br&gt;"
               />
-              <p>Tags after replacing empty lines</p>
+              <p>空の行に挿入するタグ</p>
             </label>
           </li>
           <li class="list__item">
-            <label for="wrap-tag-line" class="list__item__textarea">
+            <label for="wrap-tag" class="list__item__textarea">
               <input
                 type="text"
-                id="wrap-tag-line"
+                id="wrap-tag"
                 value="&lt;p&gt;"
                 placeholder="&lt;&gt;"
               />
-              <p>Tags after wrapping lines</p>
+              <p>行をラップするタグ</p>
+            </label>
+          </li>
+          <li class="list__item">
+            <label for="use-option-word" class="list__item__checkbox">
+              <input type="checkbox" name="" id="use-option-word" />
+              <p>特定の文字列で行をラップする</p>
+            </label>
+            <label for="option-word" class="list__item__textarea">
+              <input
+                type="text"
+                id="option-word"
+                value="h2:"
+                placeholder="h2:"
+              />
+              <p>見つける文字列</p>
+            </label>
+            <label for="option-tag" class="list__item__textarea">
+              <input
+                type="text"
+                id="option-tag"
+                value="&lt;h2&gt;"
+                placeholder="&lt;h2&gt;"
+              />
+              <p>行をラップするタグ</p>
             </label>
           </li>
         </ul>
-        <button id="option-btn" class="btn">save</button>
+        <button id="option-btn" class="btn">保存</button>
       </div>
       <div class="work-box">
         <div class="work-box__item">
           <h2>before</h2>
           <textarea id="input-form" class="textarea"></textarea
-          ><button id="conversion-btn" class="btn">conversion</button>
+          ><button id="conversion-btn" class="btn">変換</button>
         </div>
         <div class="work-box__item">
           <h2>after</h2>
           <textarea id="output-form" class="textarea"></textarea>
           <div>
-            <button id="copy-btn" class="btn">copy</button>
+            <button id="copy-btn" class="btn">コピー</button>
             <p id="copy-msg" class="message">copied!</p>
           </div>
         </div>
