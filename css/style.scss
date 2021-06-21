@@ -46,14 +46,27 @@ button {
     &__textarea {
       display: flex;
       flex-direction: column-reverse;
+      width: 100%;
       input[type="text"] {
-        width: 250px;
+        width: 100%;
       }
     }
     p {
       display: inline-block;
     }
+    .option-box {
+      display: flex;
+      max-width: 100%;
+      .list__item__textarea + .list__item__textarea {
+        margin: 0 0 0 15px;
+      }
+    }
   }
+}
+
+.setting-box {
+  width: 100%;
+  max-width: 500px;
 }
 
 .work-box {

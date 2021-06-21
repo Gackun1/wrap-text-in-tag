@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const inputForm = document.getElementById("input-form");
   const outputForm = document.getElementById("output-form");
   const conversionBtn = document.getElementById("conversion-btn");
-  const optionBtn = document.getElementById("option-btn");
+  const saveBtn = document.getElementById("save-btn");
   const copyBtn = document.getElementById("copy-btn");
   const option = {
     isWrapExistTag: false,
@@ -57,7 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
     return endTag.join("");
   };
 
+  //check use option word
   const checkOptionWord = (str) => {
+    if (!option.useOptionWord) {
+      return;
+    }
     const firstWord = str.slice(0, option.optionWord.length);
     return firstWord === option.optionWord ? true : false;
   };
@@ -74,11 +78,9 @@ document.addEventListener("DOMContentLoaded", () => {
       if (v.match(regExp.tag) && !option.isWrapExistTag) {
         //タグが存在している行
         outputText += `${v}\n`;
-      } else if (option.useOptionWord && checkOptionWord(v)) {
+      } else if (checkOptionWord(v)) {
         //特定の文字列がある行
-        outputText += `${option.optionTag}${v.slice(
-          -v.length + option.optionWord.length
-        )}${createEndTag(option.optionTag)}\n`;
+        outputText += `${option.optionTag}${v.slice(-v.length + option.optionWord.length)}${createEndTag(option.optionTag)}\n`;
       } else {
         if (v.match(regExp.nonSpaceChar)) {
           //空白以外の文字が存在する行
@@ -94,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   //option button click
-  optionBtn.addEventListener("click", setOption);
+  saveBtn.addEventListener("click", setOption);
 
   //copy button click
   copyBtn.addEventListener("click", () => {

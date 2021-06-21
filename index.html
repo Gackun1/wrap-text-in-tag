@@ -10,7 +10,7 @@
   <body>
     <div class="inner">
       <h1>記事自動マークアップツール</h1>
-      <div class="option-box">
+      <div class="setting-box">
         <h2>設定</h2>
         <ul class="list">
           <li class="list__item">
@@ -27,23 +27,13 @@
           </li>
           <li class="list__item">
             <label for="replace-empty-line" class="list__item__textarea">
-              <input
-                type="text"
-                id="replace-empty-line"
-                value="&lt;br&gt;"
-                placeholder="&lt;br&gt;"
-              />
+              <input type="text" id="replace-empty-line" value="&lt;br&gt;" placeholder="&lt;br&gt;" />
               <p>空の行に挿入するタグ</p>
             </label>
           </li>
           <li class="list__item">
             <label for="wrap-tag" class="list__item__textarea">
-              <input
-                type="text"
-                id="wrap-tag"
-                value="&lt;p&gt;"
-                placeholder="&lt;&gt;"
-              />
+              <input type="text" id="wrap-tag" value="&lt;p&gt;" placeholder="&lt;&gt;" />
               <p>行をラップするタグ</p>
             </label>
           </li>
@@ -52,33 +42,24 @@
               <input type="checkbox" name="" id="use-option-word" />
               <p>特定の文字列で行をラップする</p>
             </label>
-            <label for="option-word" class="list__item__textarea">
-              <input
-                type="text"
-                id="option-word"
-                value="h2:"
-                placeholder="h2:"
-              />
-              <p>見つける文字列</p>
-            </label>
-            <label for="option-tag" class="list__item__textarea">
-              <input
-                type="text"
-                id="option-tag"
-                value="&lt;h2&gt;"
-                placeholder="&lt;h2&gt;"
-              />
-              <p>行をラップするタグ</p>
-            </label>
+            <div class="option-box">
+              <label for="option-word" class="list__item__textarea">
+                <input type="text" id="option-word" value="h2:" placeholder="h2:" />
+                <p>見つける文字列</p>
+              </label>
+              <label for="option-tag" class="list__item__textarea">
+                <input type="text" id="option-tag" value="&lt;h2&gt;" placeholder="&lt;h2&gt;" />
+                <p>行をラップするタグ</p>
+              </label>
+            </div>
           </li>
         </ul>
-        <button id="option-btn" class="btn">保存</button>
+        <button id="save-btn" class="btn">保存</button>
       </div>
       <div class="work-box">
         <div class="work-box__item">
           <h2>before</h2>
-          <textarea id="input-form" class="textarea"></textarea
-          ><button id="conversion-btn" class="btn">変換</button>
+          <textarea id="input-form" class="textarea"></textarea><button id="conversion-btn" class="btn">変換</button>
         </div>
         <div class="work-box__item">
           <h2>after</h2>
