@@ -61,14 +61,14 @@ button {
   display: inline-block;
 }
 
-.list__item .option-box {
+.list__item .option-list__item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   max-width: 100%;
 }
 
-.list__item .option-box .list__item__textarea + .list__item__textarea {
+.list__item .option-list .list__item__textarea + .list__item__textarea {
   margin: 0 0 0 15px;
 }
 

@@ -39,19 +39,45 @@
           </li>
           <li class="list__item">
             <label for="use-option-word" class="list__item__checkbox">
-              <input type="checkbox" name="" id="use-option-word" />
-              <p>特定の文字列で行をラップする</p>
+              <input type="checkbox" id="use-option-word" checked />
+              特定の文字列で行をラップする
             </label>
-            <div class="option-box">
-              <label for="option-word" class="list__item__textarea">
-                <input type="text" id="option-word" value="h2:" placeholder="h2:" />
-                <p>見つける文字列</p>
-              </label>
-              <label for="option-tag" class="list__item__textarea">
-                <input type="text" id="option-tag" value="&lt;h2&gt;" placeholder="&lt;h2&gt;" />
-                <p>行をラップするタグ</p>
-              </label>
-            </div>
+            <ul class="option-list">
+              <li class="option-list__item">
+                <label class="list__item__textarea">
+                  <input class="find-word" id="title" type="text" value="＜タイトル＞" placeholder="＜タイトル＞" />
+                  見つける文字列
+                </label>
+                <label class="list__item__textarea">
+                  <input class="convert-word" type="text" value='&lt;h1 id="pageTtl" class="ttlLeft"&gt;' placeholder="&lt;h1&gt;" />
+                  行をラップするタグ
+                </label>
+              </li>
+              <li class="option-list__item">
+                <label class="list__item__textarea">
+                  <input class="find-word" type="text" value="&lt;h2&gt;" placeholder="&lt;h2&gt;" />
+                </label>
+                <label class="list__item__textarea">
+                  <input class="convert-word" type="text" value='&lt;h2 class="ttl01"&gt;' placeholder="&lt;h2&gt;" />
+                </label>
+              </li>
+              <li class="option-list__item">
+                <label class="list__item__textarea">
+                  <input class="find-word" type="text" value="&lt;h3&gt;" placeholder="&lt;h3&gt;" />
+                </label>
+                <label class="list__item__textarea">
+                  <input class="convert-word" type="text" value='&lt;h3 class="ttl02"&gt;' placeholder="&lt;h3&gt;" />
+                </label>
+              </li>
+              <li class="option-list__item">
+                <label class="list__item__textarea">
+                  <input class="find-word" type="text" value="&lt;h4&gt;" placeholder="&lt;h4&gt;" />
+                </label>
+                <label class="list__item__textarea">
+                  <input class="convert-word" type="text" value='&lt;h4 class="ttl05"&gt;' placeholder="&lt;h4&gt;" />
+                </label>
+              </li>
+            </ul>
           </li>
         </ul>
         <button id="save-btn" class="btn">保存</button>

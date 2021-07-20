@@ -10,8 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     useOptionWord: false,
     replaceTagEmptyLine: "<br>",
     wrapTag: "<p>",
-    optionWord: "",
-    optionTag: "",
+    optionWords: []
   };
   const regExp = {
     nonSpaceChar: /\S/g,
@@ -35,11 +34,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const useOptionWord = document.getElementById("use-option-word");
     option.useOptionWord = useOptionWord.checked;
 
-    const optionWord = document.getElementById("option-word");
-    option.optionWord = optionWord.value;
-
-    const optionTag = document.getElementById("option-tag");
-    option.optionTag = optionTag.value;
+    const findWords = document.querySelectorAll(".find-word");
+    const convertWords = document.querySelectorAll(".convert-word");
+    const optionWords = [...Array(findWords.length)].map((_v, i) => {
+      return { findWord: findWords[i].value, convertWord: convertWords[i].value };
+    });
+    option.optionWords = optionWords;
+    
+    console.log(option)
   };
 
   //create end tag
@@ -59,12 +61,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //check use option word
   const checkOptionWord = (str) => {
+    console.log(str)
     if (!option.useOptionWord) {
       return;
     }
-    const firstWord = str.slice(0, option.optionWord.length);
-    return firstWord === option.optionWord ? true : false;
+
+    for (const word of option.optionWords) {
+      const firstWord = str.slice(0, word.findWord.length);
+      if (firstWord === word.findWord) {
+        // const title = document.getElementById("title").value;
+        // console.log(firstWord, title);
+        // if (firstWord === title) {
+        //   option.title = str.slice(-str.length + word.findWord.length);
+        // }
+        // console.log(option);
+        console.log(word)
+        return word;
+      }
+    }
   };
+
+  //create option tag
+  const createOptionTag = (str) => {
+    let result = "";
+    const word = checkOptionWord(str)    
+    result = `${word.convertWord}${str.slice(-str.length + word.findWord.length)}${createEndTag(word.convertWord)}`
+    return result;
+  }
 
   //conversion button click
   conversionBtn.addEventListener("click", () => {
@@ -80,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         outputText += `${v}\n`;
       } else if (checkOptionWord(v)) {
         //特定の文字列がある行
-        outputText += `${option.optionTag}${v.slice(-v.length + option.optionWord.length)}${createEndTag(option.optionTag)}\n`;
+        outputText += `${createOptionTag(v)}\n`;
       } else {
         if (v.match(regExp.nonSpaceChar)) {
           //空白以外の文字が存在する行

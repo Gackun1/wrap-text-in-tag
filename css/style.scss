@@ -54,9 +54,11 @@ button {
     p {
       display: inline-block;
     }
-    .option-box {
-      display: flex;
-      max-width: 100%;
+    .option-list {
+      &__item {
+        display: flex;
+        max-width: 100%;
+      }
       .list__item__textarea + .list__item__textarea {
         margin: 0 0 0 15px;
       }
