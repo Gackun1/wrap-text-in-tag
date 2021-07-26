@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const option = {
     isWrapExistTag: false,
     isKeepEmptyLine: false,
-    useOptionWord: false,
+    useOptionWord: true,
     replaceTagEmptyLine: "<br>",
     wrapTag: "<p>",
     optionWords: []
@@ -84,8 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
   //create option tag
   const createOptionTag = (str) => {
     let result = "";
-    const word = checkOptionWord(str)    
-    result = `${word.convertWord}${str.slice(-str.length + word.findWord.length)}${createEndTag(word.convertWord)}`
+    const word = checkOptionWord(str);
+    const endTag = createEndTag(word.convertWord);
+    const endText = str.slice(-endTag.length);
+    let text = "";
+
+    if (endText === endTag) {
+      text = `${str.slice(word.findWord.length, -endTag.length)}`;
+    } else {
+      text = `${str.slice(word.findWord.length)}`;
+    }
+    result = `${word.convertWord}${text}${endTag}`;
+    
     return result;
   }
 
