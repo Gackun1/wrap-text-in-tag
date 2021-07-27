@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveBtn = document.getElementById("save-btn");
   const copyBtn = document.getElementById("copy-btn");
   const option = {
-    isWrapExistTag: false,
+    // isWrapExistTag: false,
     isKeepEmptyLine: false,
     useOptionWord: true,
     replaceTagEmptyLine: "<br>",
@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return { findWord: findWords[i].value, convertWord: convertWords[i].value };
     });
     option.optionWords = optionWords;
-    
-    console.log(option)
   };
 
   //create end tag
@@ -69,13 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const word of option.optionWords) {
       const firstWord = str.slice(0, word.findWord.length);
       if (firstWord === word.findWord) {
-        // const title = document.getElementById("title").value;
-        // console.log(firstWord, title);
-        // if (firstWord === title) {
-        //   option.title = str.slice(-str.length + word.findWord.length);
-        // }
-        // console.log(option);
-        console.log(word)
         return word;
       }
     }
@@ -108,10 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const lines = inputText.split(/\r\n|\n/);
 
     lines.forEach((v) => {
-      if (v.match(regExp.tag) && !option.isWrapExistTag) {
-        //タグが存在している行
-        outputText += `${v}\n`;
-      } else if (checkOptionWord(v)) {
+      // if (v.match(regExp.tag) && !option.isWrapExistTag) {
+      //   //タグが存在している行
+      //   outputText += `${v}\n`;
+      // } else 
+      if (checkOptionWord(v)) {
         //特定の文字列がある行
         outputText += `${createOptionTag(v)}\n`;
       } else {
